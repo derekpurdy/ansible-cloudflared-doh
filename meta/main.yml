@@ -1,7 +1,7 @@
 ---
 
 galaxy_info:
-  role_name: cloudflared
+  role_name: cloudflared-doh
   author: derekpurdy
   description: Install and configure Cloudflared DoH on Raspberry Pi OS
   license: GPLv2
