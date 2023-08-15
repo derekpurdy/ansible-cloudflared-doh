@@ -1,0 +1,18 @@
+---
+
+galaxy_info:
+  role_name: cloudflared
+  author: derekpurdy
+  description: Install and configure Cloudflared DoH on Raspberry Pi OS
+  license: GPLv2
+  min_ansible_version: 2.10
+  platforms:
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - debian
+    - raspberrypi
+    - pi
+    - DoH
+    - Cloudflared
