@@ -3,7 +3,7 @@
 galaxy_info:
   role_name: cloudflared_doh
   author: derekpurdy
-  description: Install and configure Cloudflared DoH (DNS-Over-HTTPS) on Raspberry Pi OS
+  description: Install and configure Cloudflared DoH (DNS-Over-HTTPS) on Raspberry Pi OS.
   license: GPLv2
   min_ansible_version: 2.10
   platforms:
