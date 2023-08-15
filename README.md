@@ -9,7 +9,7 @@ Installation for Cloudflared DOH on Raspberry Pi OS
       - pi
 
       roles:
-        - role: derekpurdy.cloudflared-doh
+        - role: derekpurdy.cloudflared_doh
           become: true
 
 ## Author Information
