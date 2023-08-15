@@ -1,0 +1,15 @@
+---
+
+cloudflared_user: cloudflared
+cloudflared_group: cloudflared
+
+cloudflared_config_file: "/etc/default/cloudflared"
+cloudflared_bin_location: "/usr/local/bin/cloudflared"
+
+cloudflared_port: 5053
+cloudflared_upstream_dns_1: "https://1.1.1.1/dns-query"
+cloudflared_upstream_dns_2: "https://1.0.0.1/dns-query"
+
+cloudflared_url: "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb"
+cloudflared_url_arm: "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm"
+cloudflared_url_arm64: "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64"
