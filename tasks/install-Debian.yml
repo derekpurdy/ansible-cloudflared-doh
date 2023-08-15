@@ -8,17 +8,6 @@
   tags:
     - always
 
-- name: "Debian | Install latest cloudflared"
-  ansible.builtin.get_url:
-    url: "{{ cloudflared_url }}"
-    tmp_dest: /tmp/
-  when:
-    - ansible_machine != "aarch64"
-    - ansible_os_family == "Debian"
-  tags:
-    - always
-    - update
-
 - name: "Raspberry PiOS | Install latest cloudflared (armv7h)"
   ansible.builtin.get_url:
     url: "{{ cloudflared_url_arm64 }}"
