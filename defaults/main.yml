@@ -10,6 +10,9 @@ cloudflared_port: 5053
 cloudflared_upstream_dns_1: "https://1.1.1.1/dns-query"
 cloudflared_upstream_dns_2: "https://1.0.0.1/dns-query"
 
+cloudflared_metrics_listen_ip: 0.0.0.0
+cloudflared_metrics_listen_port: 49312
+
 cloudflared_url: "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb"
 cloudflared_url_arm: "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm"
 cloudflared_url_arm64: "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64"

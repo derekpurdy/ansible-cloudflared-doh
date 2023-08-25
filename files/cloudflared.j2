@@ -1,2 +1,2 @@
 # Commandline args for cloudflared, using Cloudflare DNS
-CLOUDFLARED_OPTS=--port {{ cloudflared_port }} --upstream {{ cloudflared_upstream_dns_1 }} --upstream {{ cloudflared_upstream_dns_2 }}
+CLOUDFLARED_OPTS=--port {{ cloudflared_port }} --upstream {{ cloudflared_upstream_dns_1 }} --upstream {{ cloudflared_upstream_dns_2 }} --metrics {{ cloudflared_metrics_listen_ip }}:{{ cloudflared_metrics_listen_port }}

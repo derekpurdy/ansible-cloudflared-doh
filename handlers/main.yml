@@ -5,10 +5,12 @@
     name: cloudflared
     state: started
     enabled: yes
+  when:
+    "cloudflared in services"
 
 - name: "Restart cloudflared service"
   ansible.builtin.service:
     name: cloudflared
     state: restarted
   when:
-    "'cloudflared' in services"
+    "cloudflared in services"
