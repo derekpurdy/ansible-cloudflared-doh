@@ -7,8 +7,9 @@ cloudflared_config_file: "/etc/default/cloudflared"
 cloudflared_bin_location: "/usr/local/bin/cloudflared"
 
 cloudflared_port: 5053
-cloudflared_upstream_dns_1: "https://1.1.1.1/dns-query"
-cloudflared_upstream_dns_2: "https://1.0.0.1/dns-query"
+cloudflared_upstream_dns:
+  - "https://1.1.1.1/dns-query"
+  - "https://1.0.0.1/dns-query"
 
 cloudflared_metrics_listen_ip: 0.0.0.0
 cloudflared_metrics_listen_port: 49312
