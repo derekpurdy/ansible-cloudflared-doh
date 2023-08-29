@@ -1,2 +1,2 @@
 # Commandline args for cloudflared, using Cloudflare DNS
-CLOUDFLARED_OPTS=--port {{ cloudflared_port }}{% for item in cloudflared_upstream_dns %} --upstream {{ item }}{% endfor %} --metrics {{ cloudflared_metrics_listen_ip }}:{{ cloudflared_metrics_listen_port }}
+CLOUDFLARED_OPTS=--port {{ cloudflared_port }}{% for item in cloudflared_upstream_dns %} --upstream {{ item }}{% endfor %}{% if cloudflared_enable_metrics is defined and cloudflared_enable_metrics %} --metrics {{ cloudflared_metrics_listen_ip }}:{{ cloudflared_metrics_listen_port }}{% else %}{% endif %}
