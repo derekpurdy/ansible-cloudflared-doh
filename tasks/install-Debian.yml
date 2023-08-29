@@ -1,5 +1,11 @@
 ---
 
+- name: Populate service facts
+  ansible.builtin.service_facts:
+  tags:
+    - always
+    - cloudflared
+
 - name: "Add Cloudflare user"
   ansible.builtin.user:
     name: "{{ cloudflared_user }}"
