@@ -5,7 +5,7 @@ galaxy_info:
   author: derekpurdy
   description: Install and configure Cloudflared DoH (DNS-Over-HTTPS) on Raspberry Pi OS.
   license: MIT
-  min_ansible_version: 2.10
+  min_ansible_version: '2.10'
   platforms:
     - name: Debian
       versions:
