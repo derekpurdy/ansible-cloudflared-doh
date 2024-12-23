@@ -5,10 +5,7 @@
   tags:
     - always
     - cloudflared
-
-- name: Print service facts
-  ansible.builtin.debug:
-    var: ansible_facts.service
+  no_log: true
 
 - name: "Include tasks for downloading cloudflared"
   ansible.builtin.include_tasks: "download.yml"
