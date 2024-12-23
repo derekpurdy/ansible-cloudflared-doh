@@ -1,0 +1,65 @@
+---
+
+- name: "Add Cloudflare user"
+  ansible.builtin.user:
+    name: "{{ cloudflared_user }}"
+    shell: /usr/sbin/nologin
+    # group: "{{ cloudflared_group }}"
+  tags:
+    - always
+    - cloudflared
+
+- name: "Install cloudflared DEB package"
+  ansible.builtin.apt:
+    deb: "/tmp/cloudflared-linux-amd64.deb"
+  when:
+    - ansible_architecture == "x86_64"
+    - ansible_os_family == "Debian"
+  tags:
+    - always
+    - update
+    - cloudflared
+
+- name: "Install cloudflared RPM package"
+  ansible.builtin.yum:
+    name: "/tmp/cloudflared-linux-x86_64.rpm"
+    state: present
+  when:
+    - ansible_architecture == "x86_64"
+    - ansible_os_family == "RedHat"
+  tags:
+    - always
+    - update
+    - cloudflared
+
+- name: "Install latest cloudflared (armv7h)"
+  ansible.builtin.get_url:
+    url: "{{ cloudflared_url_arm }}"
+    dest: "{{ cloudflared_bin_location }}"
+    mode: '0755'
+    owner: "{{ cloudflared_user }}"
+    group: "{{ cloudflared_group }}"
+  when:
+    - ansible_architecture is search("armv")
+  tags:
+    - always
+    - update
+    - cloudflared
+  notify:
+    - 'Restart cloudflared service'
+
+- name: "Install latest cloudflared (arm64)"
+  ansible.builtin.get_url:
+    url: "{{ cloudflared_url_arm64 }}"
+    dest: "{{ cloudflared_bin_location }}"
+    owner: "{{ cloudflared_user }}"
+    group: "{{ cloudflared_group }}"
+    mode: '0755'
+  when:
+    - ansible_architecture == "aarch64"
+  tags:
+    - always
+    - update
+    - cloudflared
+  notify:
+    - 'Restart cloudflared service'

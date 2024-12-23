@@ -1,7 +1,41 @@
 ---
 
-- name: "Include OS-specific tasks"
-  include_tasks: "install-{{ ansible_os_family }}.yml"
+- name: Populate service facts
+  ansible.builtin.service_facts:
+  tags:
+    - always
+    - cloudflared
+
+- name: Print service facts
+  ansible.builtin.debug:
+    var: ansible_facts.service
+
+- name: "Include tasks for downloading cloudflared"
+  ansible.builtin.include_tasks: "download.yml"
+  tags:
+    - download
+    - cloudflared
+
+- name: "Include tasks for installing cloudflared"
+  ansible.builtin.include_tasks: "install.yml"
   tags:
     - install
     - cloudflared
+
+- name: "Include tasks for configuring cloudflared"
+  ansible.builtin.include_tasks: "configure.yml"
+  tags:
+    - configure
+    - cloudflared
+
+- name: "Include tasks for managing cloudflared service"
+  ansible.builtin.include_tasks: "service.yml"
+  tags:
+    - service
+    - cloudflared
+
+# - name: "Include tasks for uninstalling cloudflared"
+#   ansible.builtin.include_tasks: "uninstall.yml"
+#   tags:
+#     - uninstall
+#     - cloudflared
