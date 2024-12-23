@@ -2,10 +2,17 @@
 
 cloudflared_user: cloudflared
 cloudflared_group: cloudflared
+cloudflared_service_name: "cloudflared.service"
 
-cloudflared_config_file: "/etc/default/cloudflared"
+cloudflared_use_enviorment_file: true # if false, use config file
+cloudflared_config_file: "/opt/cloudflared/config.yml"
+cloudflared_enviorment_file: "/etc/defaults/cloudflared"
 cloudflared_bin_location: "/usr/local/bin/cloudflared"
+cloudflared_service_file: "/etc/systemd/system/cloudflared.service"
+cloudflared_service_restart_sec: 10
 
+cloudflared_proxy_dns: true
+cloudflared_address: 0.0.0.0
 cloudflared_port: 5053
 cloudflared_upstream_dns:
   - "https://1.1.1.1/dns-query"
@@ -15,6 +22,10 @@ cloudflared_enable_metrics: true
 cloudflared_metrics_listen_ip: 0.0.0.0
 cloudflared_metrics_listen_port: 49312
 
-cloudflared_url: "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb"
+cloudflared_url_deb: "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb"
 cloudflared_url_arm: "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm"
 cloudflared_url_arm64: "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64"
+cloudflared_url_rpm: "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-x86_64.rpm"
+
+cloudflared_no_autoupdate: true
+cloudflared_protocol: "http2"
