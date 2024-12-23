@@ -1,0 +1,68 @@
+---
+- name: Populate service facts
+  ansible.builtin.service_facts:
+  tags:
+    - uninstall
+
+- name: "Stop cloudflared service"
+  ansible.builtin.service:
+    name: "{{ cloudflared_service_name }}"
+    state: stopped
+  when:
+    - cloudflared_service_name in services
+  tags:
+    - uninstall
+
+- name: "Disable cloudflared service"
+  ansible.builtin.systemd:
+    name: "{{ cloudflared_service_name }}"
+    enabled: false
+  when:
+    - cloudflared_service_name in services
+  tags:
+    - uninstall
+
+- name: "Remove cloudflared service file"
+  ansible.builtin.file:
+    path: "{{ cloudflared_service_file }}"
+    state: absent
+  tags:
+    - uninstall
+
+- name: "Remove cloudflared binary"
+  ansible.builtin.file:
+    path: "{{ cloudflared_bin_location }}"
+    state: absent
+  tags:
+    - uninstall
+
+- name: "Remove cloudflared config file"
+  ansible.builtin.file:
+    path: "{{ cloudflared_config_file }}"
+    state: absent
+  when: not cloudflared_use_enviorment_file
+  tags:
+    - uninstall
+
+- name: "Remove cloudflared environment file"
+  ansible.builtin.file:
+    path: "{{ cloudflared_enviorment_file }}"
+    state: absent
+  when: cloudflared_use_enviorment_file
+  tags:
+    - uninstall
+
+# - name: "Remove cloudflared user"
+#   ansible.builtin.user:
+#     name: "{{ cloudflared_user }}"
+#     state: absent
+#   tags:
+#     - uninstall
+
+# - name: "Remove cloudflared group"
+#   ansible.builtin.group:
+#     name: "{{ cloudflared_group }}"
+#     state: absent
+#   when: cloudflared_group is defined
+#   tags:
+#     - uninstall
