@@ -118,6 +118,16 @@ cloudflared_no_autoupdate: true
 cloudflared_protocol: "http2"
 ```
 
+## Testing the cloudflared service
+
+```bash
+# Check the status of the cloudflared service
+sudo systemctl status cloudflared # or cloudflared-proxy
+
+dig @localhost -p 5053 google.com
+```
+
+
 ## Author Information
 
 This role was created by Derek Purdy
