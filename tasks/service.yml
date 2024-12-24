@@ -1,0 +1,26 @@
+---
+
+- name: "Create {{ cloudflared_service_file }}"
+  ansible.builtin.template:
+    src: templates/cloudflared.service.j2
+    dest: "{{ cloudflared_service_file }}"
+    owner: root
+    group: root
+    mode: '0644'
+  tags:
+    - always
+    - cloudflared
+  notify:
+    - 'Start and Enable cloudflared service'
+
+- name: "Flush handlers that might enable or restart the service"
+  ansible.builtin.meta: flush_handlers
+
+- name: "Start and enabled cloudflared service if not running"
+  ansible.builtin.service:
+    name: "{{ cloudflared_service_name }}"
+    state: started
+    enabled: true
+  when:
+    - cloudflared_service_name in services
+    - services[cloudflared_service_name].state != 'running' or services[cloudflared_service_name].status != 'enabled'

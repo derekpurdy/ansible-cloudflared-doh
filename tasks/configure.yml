@@ -1,0 +1,36 @@
+---
+
+- name: "Create environments file {{ cloudflared_enviorment_file }}"
+  when: cloudflared_use_enviorment_file
+  ansible.builtin.template:
+    src: templates/cloudflared.j2
+    dest: "{{ cloudflared_enviorment_file }}"
+    owner: "{{ cloudflared_user }}"
+    group: "{{ cloudflared_group }}"
+    mode: '0644'
+  tags:
+    - always
+    - cloudflared
+
+- name: "Configure cloudflared with config file"
+  when: not cloudflared_use_enviorment_file
+  block:
+    - name: "Ensure directory path exists for {{ cloudflared_config_file }}"
+      ansible.builtin.file:
+        path: "{{ cloudflared_config_file | dirname }}"
+        state: directory
+        mode: '0755'
+      tags:
+        - always
+        - cloudflared
+
+    - name: "Create config file {{ cloudflared_config_file }}"
+      ansible.builtin.template:
+        src: templates/config.yml.j2
+        dest: "{{ cloudflared_config_file }}"
+        owner: "{{ cloudflared_user }}"
+        group: "{{ cloudflared_group }}"
+        mode: '0644'
+      tags:
+        - always
+        - cloudflared

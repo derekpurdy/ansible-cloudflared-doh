@@ -2,16 +2,14 @@
 
 - name: "Start and Enable cloudflared service"
   ansible.builtin.service:
-    name: cloudflared
+    name: "{{ cloudflared_service_name }}"
     state: started
     enabled: true
-  when:
-    "'cloudflared.service' in services"
 
 - name: "Restart cloudflared service"
   ansible.builtin.service:
-    name: cloudflared
+    name: "{{ cloudflared_service_name }}"
     state: restarted
   when:
     - not ansible_check_mode
-    - "'cloudflared.service' in services"
+    - cloudflared_service_name in services

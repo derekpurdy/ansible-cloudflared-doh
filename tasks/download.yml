@@ -1,0 +1,24 @@
+---
+- name: "Download cloudflared for x86_64 on DEB-based system"
+  ansible.builtin.get_url:
+    url: "{{ cloudflared_url_deb }}"
+    dest: "/tmp/cloudflared-linux-amd64.deb"
+    mode: '0644'
+  when:
+    - ansible_architecture == "x86_64"
+    - ansible_os_family == "Debian"
+  tags:
+    - always
+    - cloudflared
+
+- name: "Download cloudflared for x86_64 on RPM-based system"
+  ansible.builtin.get_url:
+    url: "{{ cloudflared_url_rpm }}"
+    dest: "/tmp/cloudflared-linux-x86_64.rpm"
+    mode: '0644'
+  when:
+    - ansible_architecture == "x86_64"
+    - ansible_os_family == "RedHat"
+  tags:
+    - always
+    - cloudflared

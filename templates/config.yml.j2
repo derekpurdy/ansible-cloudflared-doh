@@ -1,0 +1,26 @@
+# DNS over HTTPS settings
+proxy-dns: {{ cloudflared_proxy_dns }}
+proxy-dns-address: {{ cloudflared_address }}
+proxy-dns-port: {{ cloudflared_port }}
+proxy-dns-upstream: {{ cloudflared_upstream_dns }}
+
+# tunnel: <tunnel-id>
+# credentials-file: /path/to/credentials-file.json
+
+# Optional settings
+# logfile: /var/log/cloudflared.log
+# loglevel: info # options: debug, info, warn, error, fatal
+# hostname: example.com
+# url: http://localhost:8000
+# origincert: /path/to/cert.pem
+
+
+# Load balancing settings
+# lb-pool: <pool-name>
+# lb-probe-interval: 60s
+
+# Tunnel settings
+no-autoupdate: {{ cloudflared_no_autoupdate }}
+protocol: {{ cloudflared_protocol }}
+# options: quic, http2
+metrics: {{ cloudflared_metrics_listen_ip }}:{{ cloudflared_metrics_listen_port }} 
